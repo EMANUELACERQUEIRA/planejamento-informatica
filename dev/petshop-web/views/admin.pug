@@ -1,0 +1,33 @@
+extends layouts/admin-layout.pug
+
+block main
+    .chartjs-size-monitor
+        .chartjs-size-monitor-expand
+        .chartjs-size-monitor-shrink
+    .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        .h2 Dashboard
+        .btn-toolbar.mb-2.mb-md-0
+            .btn-group.me-2
+                button.btn.btn-sm.btn-outline-secondary( type="button" ) Compartilhar
+                button.btn.btn-sm.btn-outline-secondary( type="button" ) Exportar
+            button.btn.btn-sm.btn-outline-secondary.dropdown-toggle Esta semana
+    canvas.my-4.w-100.chartjs-render-monitor( id="myChart", name="myChart", style="display: block; width: 616px; height: 260px;", width="616", height="260" )
+
+    h2 Agendamentos de hoje
+    .table-responsive
+        table.table.table-striped.table-sm
+            thead
+                tr
+                    th( scope="col" ) Horário
+                    th( scope="col" ) Cliente
+                    th( scope="col" ) Pet
+                    th( scope="col" ) Serviço
+                    th( scope="col" ) Funcionário
+            tbody
+                tr
+                    td 10:00
+                    td Roberto
+                    td Pitoca
+                    td Cristiano
+                    td Banho e tosa
+

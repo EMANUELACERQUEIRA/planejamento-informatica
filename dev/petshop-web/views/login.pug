@@ -1,0 +1,28 @@
+extends layouts/main-layout.pug
+
+block nav
+    include includes/nav-home.pug
+
+block content
+    .panel
+        .title.h5.mb-3.fw-normal Acessar o agendamento
+        form(action="/login", method="POST")
+            .form-signin
+                .form-floating
+                    label( for="email" ) E-mail
+                    input.form-control( type="email", name="usuario", placeholder="Digite o seu e-mail", required )#user
+                .form-floating
+                    label( for="senha" ) Senha
+                    input.form-control( type="password", name="senha", placeholder="Digite a sua senha", required )#password
+                .checkbox.mb-3
+                    label
+                        input(type="checkbox", value="remember")
+                        span Lembrar
+            .login-button
+                button.w-100.btn.btn-primary( type="submit" id="login" ) Entrar
+                button.w-100.btn.btn-primary( type="submit" id="facebook" ) Entrar com o Facebook
+                button.w-100.btn.btn-primary( type="submit" id="google" ) Entrar com o Google
+
+    if msg
+        div.alert.alert-danger( role="alert" )
+            span #{msg}
