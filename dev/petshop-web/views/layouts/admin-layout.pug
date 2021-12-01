@@ -6,23 +6,23 @@ block content
             .position-sticky.pt-3
                 ul.nav.flex-column
                     li.nav-item
-                        a.nav-link.active Dashboard
+                        a.nav-link.active( href="/admin", aria-current="page" ) Dashboard
                     li.nav-item
-                        a.nav-link Agendar
+                        a.nav-link( href="/admin/agenda" ) Agenda
                 h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
                     span Cadastros
                 ul.nav.flex-column
                     li.nav-item
-                        a.nav-link Funcionários
+                        a.nav-link( href="/admin/funcionarios" ) Funcionários
                     li.nav-item
-                        a.nav-link Clientes
+                        a.nav-link( href="/admin/clientes" ) Clientes
                 h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
                     span Configurações
                 ul.nav.flex-column
                     li.nav-item
-                        a.nav-link Serviços
+                        a.nav-link( href="/admin/servicos" ) Serviços
                     li.nav-item
-                        a.nav-link Calendário
+                        a.nav-link( href="/admin/calendarios" ) Calendário
         main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
             block main
     

@@ -1,6 +1,5 @@
 import express from 'express';
-import session from "express-session";
-import User from '../db/controllers/UsuarioController.js';
+import Usuario from '../db/controllers/UsuarioController.js';
 
 const router = express.Router();
 
@@ -14,10 +13,10 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login', async (req, res, next) => {
     let ssn = req.session;
-    await User.login(req, res)
+    await Usuario.login(req, res)
         .then(login => {
             if (login.tipo) {
-                ssn = login;
+                ssn.login = login;
                 res.redirect(`/${login.tipo}`);
             } else {
                 res.render('login', { msg: login.msg });
@@ -29,7 +28,7 @@ router.post('/login', async (req, res, next) => {
 });
 
 router.post('/logout', (req, res, next) => {
-    const logout = User.logout(req, res);
+    const logout = Usuario.logout(req, res);
 
     req.session.destroy((err) => {
         if (err) {

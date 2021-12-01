@@ -1,6 +1,5 @@
 import express from "express";
 import session from "express-session";
-import User from '../db/controllers/UsuarioController.js';
 
 const routes = express.Router();
 

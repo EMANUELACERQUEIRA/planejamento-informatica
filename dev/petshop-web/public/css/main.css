@@ -27,51 +27,47 @@ main {
 }
 
 .main-header {
+    z-index: 999px;
+    top: 0;
+    left: 0;
     display: flex;
     background-color: #D99F6C;
     padding-top: 2rem;
     padding-bottom: 2rem;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
+    justify-content: space-between;
 }
 
-.main-header__nav {
-    margin-left: auto;
-    margin-right: 2rem;
+.main-header .title {
+    text-align: center;
+    font-size: xx-large;
+    color: #401201;
 }
 
-.main-header__item-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.main-header__item {
-    margin: 0 1rem;
-    padding: 0;
-}
-
-.main-header__item a {
+.main-header .nav a {
     text-decoration: none;
     color: white;
 }
 
-.main-header__item a:hover,
-.main-header__item a:active,
-.main-header__item a.active {
+.main-header .nav a:hover,
+.main-header .nav a:active,
+.main-header .nav a.active {
     color: #ffeb3b;
 }
 
-.panel {
-    margin: auto;
+.panel-login {
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
     width: 30%;
     border: 0.3rem;
     box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
     border-radius: 1rem;
 }
 
-.panel .title {
+.panel-login .title {
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     border-top-left-radius: 1rem;
@@ -92,4 +88,73 @@ main {
 
 .login-button button {
     margin-top: 1rem;
+}
+
+.calendario {
+    margin: 1rem auto;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px #C3C3C3;
+}
+
+.section-titulo {
+    display: flex;
+    background-color: #D99F6C;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    color: #401201;
+    justify-content: center;
+    font-size: x-large;
+}
+
+.endereco {
+    margin-top: 1rem;
+}
+
+.endereco p {
+    white-space: pre;
+}
+
+.cards-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+footer {
+    background-color: #D99F6C;
+    height: 5rem;
+    align-items: center;
+    bottom: 0;
+    margin-top: 3rem;
+}
+
+/* --------------------------------------------------
+   CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+/* Carousel base class */
+.carousel {
+    margin-bottom: 4rem;
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+    height: 32rem;
+}
+
+.carousel-item>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
 }

@@ -1,0 +1,70 @@
+extends layouts/admin-layout.pug
+
+block main
+    .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        .h2 Calendários
+        .btn-toolbar.mb-2.mb-md-0
+            button.btn.btn-sm.btn-outline-secondary( id="atualizarRelatorio", type="button" ) Atualizar
+            button.btn.btn-sm.btn-outline-secondary( data-bs-toggle="modal", data-bs-target="#calendarioModal" ) Novo Calendário
+            button.btn.btn-sm.btn-outline-secondary( id="exportarRelatorio", type="button" ) Exportar
+    div( id="table_calendarios" )
+
+    div.modal.fade( id="calendarioModal", tabindex="-1", aria-labelledby="calendarioModalLabel" aria-hidden="true" )
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.modal-title( id="calendarioModalLabel" ) Calendário
+                    button.btn-close( type="reset", data-bs-dismiss="modal", aria-label="Close" )
+                .modal-body
+                    form.g-3( id="calendarioForm", method="POST" )
+                        .col-12( hidden )    
+                            label.form-label( for="id" ) Id
+                            input.form-control( type="text", name="id", id="id" )
+                        .mb-3
+                            label( for="nome" ) Nome
+                            input.form-control( name="nome", id="nome", required )
+                        .mb-3
+                            label( for="descricao" ) Descricao
+                            textarea.form-control( name="descricao", id="descricao", required )
+                        .control-group
+                            label.form-label( for="horarioDe" ) Dias da Semana
+                            .row
+                                .form-check.form-switch.col-md-4
+                                    input.form-check-input( type="checkbox", name="segunda", id="segunda", role="switch", checked )
+                                    label.form-check-label( for="segunda" ) Segunda-feira
+                                .form-check.form-switch.col-md-4
+                                    input.form-check-input( type="checkbox", name="terca", id="terca", role="switch", checked )
+                                    label.form-check-label( for="terca" ) Terça-feira
+                                .form-check.form-switch.col-md-4
+                                    input.form-check-input( type="checkbox", name="quarta", id="quarta", role="switch", checked )
+                                    label.form-check-label( for="quarta" ) Quarta-feira
+                                .form-check.form-switch.col-md-4
+                                    input.form-check-input( type="checkbox", name="quinta", id="quinta", role="switch", checked )
+                                    label.form-check-label( for="quinta" ) Quinta-feira
+                                .form-check.form-switch.col-md-4
+                                    input.form-check-input( type="checkbox", name="sexta", id="sexta", role="switch", checked )
+                                    label.form-check-label( for="sexta" ) Sexta-feira
+                                .form-check.form-switch.col-md-4
+                                    input.form-check-input( type="checkbox", name="sabado", id="sabado", role="switch", checked )
+                                    label.form-check-label( for="sabado" ) Sábado
+                                .form-check.form-switch.col-md-4
+                                    input.form-check-input( type="checkbox", name="domingo", id="domingo", role="switch", checked )
+                                    label.form-check-label( for="domingo" ) Domingo
+                        .row
+                            label.form-label( for="horarioDe" ) Horário
+                            .input-group
+                                input.form-control( type="time", name="horarioDe", id="horarioDe", required )
+                                label.col-sm.text-center.align-item-center( for="horarioAte" ) até
+                                input.form-control( type="time", name="horarioAte", id="horarioAte", required )
+                        .form-check.form-switch.col-6
+                            input.form-check-input( type="checkbox", name="ativo", checked, role="switch" )
+                            label.form-check-label( for="ativo" ) Calendário ativo
+                        .modal-footer
+                            button.btn.btn-secondary( type="reset" data-bs-dismiss="modal" ) Cancelar
+                            button.btn.btn-danger( type="button", id="excluirButton", hidden, onClick="onClickExcluirCalendario()" ) Excluir
+                            button.btn.btn-primary( type="submit" ) Gravar
+
+    include includes/msg-alert.pug
+
+    script( type="text/javascript" ).
+        relatorioListarCalendarios();

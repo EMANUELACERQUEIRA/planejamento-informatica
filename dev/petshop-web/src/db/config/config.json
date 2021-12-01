@@ -1,0 +1,33 @@
+{
+  "development": {
+    "seederStorage": "json",
+    "logging": true,
+    "dialect": "sqlite",
+    "storage": "petshop_dev.sqlite",
+    "pool": {
+      "max": 10,
+      "min": 0,
+      "idle": 10000
+    }
+  },
+  "test": {
+    "dialect": "sqlite",
+    "storage": "petshop_qas.sqlite",
+    "logging": true,
+    "pool": {
+      "max": 10,
+      "min": 0,
+      "idle": 10000
+    }
+  },
+  "production": {
+    "dialect": "sqlite",
+    "storage": "petshop_prd.sqlite",
+    "logging": false,
+    "pool": {
+      "max": 10,
+      "min": 0,
+      "idle": 10000
+    }
+  }
+}

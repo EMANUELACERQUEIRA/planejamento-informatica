@@ -1,25 +1,32 @@
 export default (sequelize, Sequelize) => {
 
-    return sequelize.define('Usuario', {
+    return sequelize.define('Servico', {
         id: {
             type: Sequelize.UUID,
-            defaultValue: Sequelize.UUIDV4,
             allowNull: false,
             primaryKey: true,
             unique: true
         },
-        usuario: {
-            type: Sequelize.STRING,
+        nome: {
+            type: Sequelize.STRING(50),
             allowNull: false,
-            trim: true,
-            unique: true
         },
-        senha: {
+        descricao: {
             type: Sequelize.STRING,
             allowNull: false,
         },
-        tipo: {
+        cor: {
             type: Sequelize.STRING(10),
+            allowNull: false,
+        },
+        tempo: {
+            type: Sequelize.STRING(6),
+            defaultValue: '000000',
+            allowNull: false,
+        },
+        preco: {
+            type: Sequelize.DECIMAL(5, 2),
+            defaultValue: '0.00',
             allowNull: false,
         },
         ativo: {
@@ -35,15 +42,8 @@ export default (sequelize, Sequelize) => {
             type: Sequelize.DATE,
             allowNull: false,
         },
-        lastLogin: {
-            type: Sequelize.DATE,
-            allowNull: true,
-        },
-        lastLogout: {
-            type: Sequelize.DATE,
-            allowNull: true,
-        },
     }, {
-        tableName: 'Usuario'
+        tableName: 'Servico'
     });
+
 }

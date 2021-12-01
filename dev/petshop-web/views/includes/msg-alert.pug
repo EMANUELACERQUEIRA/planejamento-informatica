@@ -1,0 +1,7 @@
+if msg 
+    if msg.tipo == 'alert'
+        .alert.alert-danger.alert-dismissible( role="alert" ) #{msg.msg}
+            .button.btn-close( type="button" data-bs-dismiss="alert" aria-label="Close" )
+    else
+        .alert.alert-success.alert-dismissible( role="alert" ) #{msg.msg}
+            .button.btn-close( type="button" data-bs-dismiss="alert" aria-label="Close" )

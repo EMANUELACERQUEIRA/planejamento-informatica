@@ -4,5 +4,76 @@ block nav
     include includes/nav-home.pug
 
 block content
-    .container-fluid
-        h1 pug is very simple!
+    .container
+        div( id="sobre" )
+            .carousel.slide( id="myCarousel" data-bs-ride="carousel" )
+                .carousel-indicators
+                    button.active( type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1" )
+                    button( type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" )
+                    button( type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" )
+                .carousel-inner
+                    .carousel-item.active
+                        svg.bd-placeholder-img( width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" )
+                            img.d-block.w-100( src="../img/loja_frente.jpeg" alt="Apresentação da entrada da loja e seus produtos" )
+                    .carousel-item
+                        svg.bd-placeholder-img( width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" )
+                            rect( width="100%" height="100%" fill="#777" )
+                    .carousel-item
+                        svg.bd-placeholder-img( width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" )
+                            rect( width="100%" height="100%" fill="#777" )
+                    button.carousel-control-prev( type="button" data-bs-target="#myCarousel" data-bs-slide="prev" )
+                        span.carousel-control-prev-icon( aria-hidden="true" )
+                        span.visually-hidden Anterior
+                    button.carousel-control-next( type="button" data-bs-target="#myCarousel" data-bs-slide="next" )
+                        span.carousel-control-next-icon( aria-hidden="true" )
+                        span.visually-hidden Próximo
+    
+        section( id="servicos" )
+            .section-titulo Serviços
+            .cards-container
+                .card( style="width: 30%" )
+                    img.card-img-top( src="../img/banho.jpeg" alt="Banho e tosa para cães e gatos" )
+                    .card-body
+                        h5.card-title Banho e Tosa
+                        p.card-text Seu pet sempre cheiroso, macio e elegante. 
+                .card( style="width: 30%" )
+                    img.card-img-top( src="../img/veterinario.jpeg" alt="Clínica veterinária para cães e gatos" )
+                    .card-body
+                        h5.card-title Veterinário
+                        p.card-text Sabemos como seus cães e gatos são importantes. 
+
+        section( id="contato" ) 
+            .section-titulo Contato
+            .row
+                .col-5
+                    img( src="../img/maps.png" width="80%")
+                    .endereco
+                        p
+                            | Avenida Julio Buono, 1746
+                            | Vila Gustavo - São Paulo
+                            | CEP 02201-001
+                            | Whatsapp: (11) 99257-8032
+                    .endereco
+                        p
+                            | Segunda a Sexta
+                            | 09:00 as 18:00
+                            | Sábado
+                            | 10:00 as 14:00
+                .col-5
+                    form( method="POST" )
+                        h5 Recado
+                        .mb-3
+                            label( for="nome" ) Nome
+                            input.form-control( id="nome" )
+                        .mb-3
+                            label( for="telefone" ) Telefone
+                            input.form-control( id="telefone" )
+                        .mb-3
+                            label( for="email" ) Telefone
+                            input.form-control( type="email" id="email" placeholder="name@example.com" )
+                        .mb-3
+                            label( for="mensagem" ) Mensagem
+                            textarea.form-control( id="mensagem" )
+                        button.btn.btn-primary( type="submit" ) Enviar
+                
+

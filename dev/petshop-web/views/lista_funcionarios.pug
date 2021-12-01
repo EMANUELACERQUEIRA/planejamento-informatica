@@ -1,0 +1,17 @@
+extends layouts/admin-layout.pug
+
+block main
+    .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        .h2 Funcionários
+        .btn-toolbar.mb-2.mb-md-0
+            button.btn.btn-sm.btn-outline-secondary( id="atualizarRelatorio", type="button" ) Atualizar
+            button.btn.btn-sm.btn-outline-secondary( data-bs-toggle="modal", data-bs-target="#funcionarioModal" ) Novo Funcionário
+            button.btn.btn-sm.btn-outline-secondary( id="exportarRelatorio", type="button" ) Exportar
+    div( id="table_funcionarios" )
+
+    
+
+    include includes/msg-alert.pug
+
+    script( type="text/javascript" ).
+        relatorioListarFuncionarios();
