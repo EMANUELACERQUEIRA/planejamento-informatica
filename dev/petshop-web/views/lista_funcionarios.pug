@@ -9,7 +9,102 @@ block main
             button.btn.btn-sm.btn-outline-secondary( id="exportarRelatorio", type="button" ) Exportar
     div( id="table_funcionarios" )
 
-    
+    div.modal.fade( id="funcionarioModal" tabindex="-1" aria-labelledby="funcionarioModalLabel" aria-hidden="true" )
+        .modal-dialog.modal-dialog-centered.modal-lg
+            .modal-content
+                .modal-header
+                    h5.modal-title( id="funcionarioModalLabel" ) Funcionario
+                    button.btn-close( type="reset" data-bs-dismiss="modal" aria-label="Close" )
+                .modal-body
+                    form.row.g-3( id="funcionarioForm" method="POST" )
+                        .col-12( hidden )    
+                            label.form-label( for="id" ) Id
+                            input.form-control( type="text" name="id" id="id" )
+                        .col-12
+                            label.form-label( for="nome" ) Nome
+                            input.form-control( name="nome" id="nome" required )
+                        .col-12
+                            label.form-label( for="email" ) E-mail
+                            input.form-control( type="email" name="email" id="email" required )
+                        .col-12
+                            label.form-label( for="telefone" ) Telefone
+                            input.form-control( name="telefone" id="telefone" required )
+                        .row.mt-2.align-items-center
+                            label.form-label( for="statusFuncionario" ) Status do Funcionário
+                            .input-group( id="statusFuncionario" name="statusFuncionario" )
+                                .col-md
+                                    .form-check.form-switch
+                                        input.form-check-input( type="checkbox" name="trabalhando" id="trabalhando" checked role="switch" )
+                                        label.form-check-label( for="trabalhando" ) Férias?
+                                .col-md
+                                    .form-check.form-switch
+                                        input.form-check-input( type="checkbox" name="ativo" id="ativo" checked role="switch" )
+                                        label.form-check-label( for="ativo" ) Funcionario ativo                            
+                        .nav.nav-tabs
+                            button.nav-link.active( id="nav-servico-tab" data-bs-toggle="tab" data-bs-target="#nav-servico" type="button" role="tab" aria-controls="nav-servico" aria-selected="true" ) Serviços
+                            button.nav-link( id="nav-escala-tab" data-bs-toggle="tab" data-bs-target="#nav-escala" type="button" role="tab" aria-controls="nav-escala" aria-selected="true" ) Escala
+                        .tab-content( id="nav-tabContent" )
+                            .tab-pane.fade.show.active( id="nav-servico" role="tabpanel" aria-labelledby="nav-servico-tab" )
+                                .row.align-items-end
+                                    .col-sm
+                                        label.form-label( for="nomeServico" ) Nome
+                                        input.form-control( name="nomeServico" id="nomeServico" required )
+                                    .col-sm
+                                        button.btn.btn-success( type="button" ) +
+                                table.table.table-striped
+                                    thead
+                                        tr
+                                            th( scope="col" ) Serviço
+                                            th
+                                    tbody
+                                        tr
+                                            th( scope="row" ) Banho
+                                            td 
+                                                button.btn.btn-danger( type="button" )
+                                                    svg( xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" )
+                                                        path( d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" )
+                                                        path( fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" )
+                                        tr
+                                            th( scope="row" ) Tosa
+                                            td 
+                                                button.btn.btn-danger( type="button" )
+                                                    svg( xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" )
+                                                        path( d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" )
+                                                        path( fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" )                                    
+                            .tab-pane.fane( id="nav-escala" role="tabpanel" aria-labelledby="nav-escala-tab" )
+                                .row.align-items-end
+                                    .col-sm
+                                        label.form-label( for="nomeCalendario" ) Nome
+                                        input.form-control( name="nomeCalendario" id="nomeCalendario" required )
+                                    .col-md
+                                        label.form-label( for="descricaoCalendario" ) Descrição
+                                        input.form-control( name="descricaoCalendario" id="descricaoCalendario" readonly )
+                                    .col-md
+                                        label.form-label( for="horarioCalendario" ) Horário
+                                        input.form-control( name="horarioCalendario" id="horarioCalendario" readonly )
+                                    .col-sm
+                                        button.btn.btn-success( type="button" ) +    
+                                table.table.table-striped
+                                    thead
+                                        tr
+                                            th( scope="col" ) Nome
+                                            th( scope="col" ) Descrição
+                                            th( scope="col" ) Horário
+                                            th
+                                    tbody
+                                        tr
+                                            th( scope="row" ) Loja
+                                            td horário padrão da petshop
+                                            td 09:00 até 19h00
+                                            td 
+                                                button.btn.btn-danger( type="button" )
+                                                    svg( xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" )
+                                                        path( d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" )
+                                                        path( fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" )
+                        .modal-footer
+                            button.btn.btn-secondary( type="reset" data-bs-dismiss="modal" ) Cancelar
+                            button.btn.btn-danger( type="button" id="excluirButton" hidden onClick="onClickExcluirfuncionario()" ) Excluir
+                            button.btn.btn-primary( type="submit" ) Gravar      
 
     include includes/msg-alert.pug
 

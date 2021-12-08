@@ -18,8 +18,18 @@ export default (sequelize, Sequelize) => {
             type: Sequelize.DATE,
             allowNull: false,
         },
+        userId: {
+            type: Sequelize.UUID,
+            allowNull: false,
+            defaultValue: '',
+        },
+        enderecoId: {
+            type: Sequelize.UUID,
+            allowNull: false,
+            defaultValue: '',
+        },
     }, {
         tableName: 'Cliente'
     });
-    
+
 };

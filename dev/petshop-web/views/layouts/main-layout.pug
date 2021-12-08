@@ -17,11 +17,12 @@ html(lang="en")
         script( type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js" )
         script( type="text/javascript" src="../assets/js/jquery-ui.custom.min.js" )
         script( type="text/javascript" src="../assets/js/fullcalendar.js" )
+        script( type="text/javascript", src="../static/js/chart.min.js" )
         script( type="text/javascript" src="../js/main.js" ) 
         block styles
     body   
-        header.main-header
-            a(href="/")
+        header.main-header.navbar.sticky-top.flex-md-nowrap.p-0
+            a.navbar-brand.col-md-3.col-lg-2.me-0.px-3(href="/")
                 img.header-logo(src="../img/logo.png", alt="Logo da petshop com cachorrinho e gatinho")
             block nav
 

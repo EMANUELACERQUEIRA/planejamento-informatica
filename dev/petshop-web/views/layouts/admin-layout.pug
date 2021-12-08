@@ -1,9 +1,12 @@
 extends main-layout.pug
 
+block nav
+    include ../includes/nav-sistema.pug
+
 block content
     .row
-        nav.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse( id="sidebarMenu")
-            .position-sticky.pt-3
+        include ../includes/navbar-sistema.pug
+            block navbar
                 ul.nav.flex-column
                     li.nav-item
                         a.nav-link.active( href="/admin", aria-current="page" ) Dashboard

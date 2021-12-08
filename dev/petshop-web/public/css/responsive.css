@@ -1,3 +1,13 @@
+@media (max-width: 62em) {
+    .header-logo{
+        width: 40%;
+    }
+
+    .main-header .title {
+        display: none;
+    }
+}
+
 @media (min-width: 40em) {
 
     /* Bump up size of carousel content */

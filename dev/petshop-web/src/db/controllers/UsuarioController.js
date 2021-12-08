@@ -8,10 +8,10 @@ class UsuarioController extends Controller {
     }
 
     async login(req, res) {
-        const Model = this.Model;
-        let response = {};
+        const controller = this;
+        const Model = controller.Model;
 
-        await Model.findOne({
+        return await Model.findOne({
             where: {
                 usuario: req.body.usuario,
                 senha: req.body.senha,
@@ -22,42 +22,55 @@ class UsuarioController extends Controller {
                 const user = result.dataValues;
                 user.lastLogin = new Date();
 
-                try {
-                    const update = await Model.update({ lastLogin: user.lastLogin }, { where: { id: user.id } });
-                    if (update[0] === 1) {
-                        await Model.findOne({ where: { id: user.id } })
-                        .then(login => {
-                            response = login.dataValues;
-                        });
-                    }
-                } catch (err) {
-                    response = { msg: 'Login indisponivel' };
-                }
+                return await controller.update(user)
+                    .then((response) => {
+                        return response;
+                    })
+                    .catch(() => {
+                        return { tipo: 'alert', msg: 'Login indisponivel' };    
+                    })
+                ;
             })
-            .catch(err => {
-                response = { msg: 'Usuário e Senha inválido' };
+            .catch(() => {
+                return { tipo: 'alert', msg: 'Usuário e Senha inválido' };
             });
-        
-        return response;
     }
 
-    async logout(req, res) {
-        await Model.findOne({ where: { id: req.body.id } })
+    async logout(login) {
+        const controller = this;
+        const Model = controller.Model;
+        let msg = {};
+
+        await Model.findOne({
+            where: {
+                id: login.id,
+                usuario: login.usuario,
+                senha: login.senha,
+                ativo: true
+            }
+        })
             .then(async result => {
                 const user = result.dataValues;
                 user.lastLogout = new Date();
 
-                try {
-                    await Model.update({ lastLogout: user.lastLogout }, { where: { user: user.user } });
-                    const login = await Model.findOne({ where: { user: user.user } });
-                    return res.json(login.dataValues);
-                } catch (err) {
-                    return { msg: 'Logout indisponivel' };
-                }
+                await controller.update(user)
+                    .then(async (response) => {
+                        if (response.usuario) {
+                            msg = { tipo: 'success', msg: 'Usuário desconectado, volte logo!' };
+                        } else {
+                            msg = { tipo: 'alert', msg: 'Usuário não encontrado!' };
+                        }
+                    })
+                    .catch((err) => {
+                        msg = { tipo: 'alert', msg: 'Logout indisponivel' };
+                    })
+                ;
             })
             .catch(err => {
-                return { msg: 'Usuário e Senha inválido' };
+                msg = { tipo: 'alert', msg: 'Usuário e Senha inválido' };
             });
+        
+        return msg;
     }
 }
 

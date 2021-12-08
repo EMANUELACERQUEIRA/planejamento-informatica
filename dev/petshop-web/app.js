@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import db from './src/db/index.js';
 import routes from './src/routes/index.js';
 import routesAdmin from './src/routes/admin.js';
+import routesCliente from './src/routes/cliente.js';
 import routesServ from './src/routes/services.js';
 import rootDir from './src/util/path.js';
 
@@ -33,7 +34,7 @@ app.use(favicon(path.join(rootDir,'public','img','favicon.ico')));
 // Bootstrap
 app.use('/static/css', express.static(path.join(rootDir, 'node_modules/bootstrap/dist/css')));
 app.use('/static/js', express.static(path.join(rootDir, 'node_modules/bootstrap/dist/js')));
-app.use('/static/icon', express.static(path.join(rootDir, 'node_modules/bootstrap/dist/')));
+app.use('/static/icon', express.static(path.join(rootDir, 'node_modules/bootstrap-icons/icons')));
 
 // JQuery
 app.use('/static/js', express.static(path.join(rootDir, 'node_modules/jquery/dist')));
@@ -45,12 +46,16 @@ app.use('/static/js', express.static(path.join(rootDir, 'node_modules/axios/dist
 app.use('/static/css', express.static(path.join(rootDir, 'node_modules/tabulator-tables/dist/css')));
 app.use('/static/js', express.static(path.join(rootDir, 'node_modules/tabulator-tables/dist/js')));
 
+// Chart.js
+app.use('/static/js', express.static(path.join(rootDir, 'node_modules/chart.js/dist')));
+
 // Session
 app.use(session({secret:'petshop'}));
 
 // Rotas
 app.use('/', routes);
 app.use('/admin', routesAdmin);
+app.use('/cliente', routesCliente);
 app.use('/services', routesServ);
 
 app.use((req, res, next) => {

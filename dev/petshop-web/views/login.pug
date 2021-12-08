@@ -23,6 +23,4 @@ block content
                 button.w-100.btn.btn-primary( type="submit" id="facebook" ) Entrar com o Facebook
                 button.w-100.btn.btn-primary( type="submit" id="google" ) Entrar com o Google
 
-    if msg
-        .alert.alert-danger
-            span #{msg}
+    include includes/msg-alert.pug

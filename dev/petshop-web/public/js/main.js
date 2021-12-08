@@ -1,19 +1,98 @@
 var callAxios = axios.create();
 
+function dashboardAdmin() {
+    // Graphs
+    const canvas = document.getElementById('myChart')
+    
+    let myChart = new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            datasets: [
+                {
+                    data: [3, 5, 8, 13, 21, 13],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#ff40ff',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#ff40ff',
+                    label: 'Banho'
+                },
+                {
+                    data: [0, 0, 1, 1, 2, 5],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#007bff',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#007bff',
+                    label: 'Tosa'
+                },
+                {
+                    data: [5, 8, 13, 8, 5, 3],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#66ff',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#66ff',
+                    label: 'Veterinário'
+                }
+            ]
+        },
+        options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: false
+                }
+              }]
+            },
+            legend: {
+              display: true
+            }
+        }
+    });
+}
+
+function relatorioListarPet() {
+    let table = new Tabulator('#table_pet', {
+        layout: 'fitColumns',
+        ajaxURL: '/exampledata/ajaxprogressive',
+        pagination: 'local',
+        paginationSize: 20,
+        paginationSizeSelector: [10, 20, 30, 50, 80, 130],
+        movableColumns: true,
+        columns: [
+            { title: 'Pet', field: 'pet' },
+            { title: 'Raça / Espécie', field: 'raca' },
+        ]
+    });
+
+    table.on('rowClick', (oEvent, oRow) => {
+        $('#petModal').modal('show');
+        this.onTableRowClick(oRow);
+    });
+}
+
 function relatorioListarClientes() {
     let table = new Tabulator('#table_clientes', {
         layout: 'fitColumns',
         ajaxURL: '/exampledata/ajaxprogressive',
         pagination: 'local',
-        paginationSize: 6,
-        paginationSizeSelector: [3, 6, 8, 10],
+        paginationSize: 20,
+        paginationSizeSelector: [10, 20, 30, 50, 80, 130],
         movableColumns: true,
         columns: [
-            { title: 'Nome', field: 'nome'},
-            { title: 'Pet', field: 'pet' },
-            { title: 'Raça', field: 'raca' },
-            { title: 'Telefone', field: 'telefone' }
+            { title: 'Nome', field: 'nome', headerFilter: 'input' },
+            { title: 'Pet', field: 'pet', headerFilter: 'input' },
+            { title: 'Raça', field: 'raca', headerFilter: 'input' },
+            { title: 'Telefone', field: 'telefone', headerFilter: 'input' },
+            { title: 'Ativo', field: 'ativo', headerFilter: 'tickCross',  headerFilterParams: { tristate: true }, headerFilterEmptyCheck: (value) => {return value === null} }
         ]
+    });
+
+    table.on('rowClick', (oEvent, oRow) => {
+        $('#clienteModal').modal('show');
+        this.onTableRowClick(oRow);
     });
 }
 
@@ -22,17 +101,22 @@ function relatorioListarFuncionarios() {
         layout: 'fitColumns',
         ajaxURL: '/services/listarFuncionarios',
         pagination: 'local',
-        paginationSize: 6,
-        paginationSizeSelector: [3, 6, 8, 10],
+        paginationSize: 20,
+        paginationSizeSelector: [10, 20, 30, 50, 80, 130],
         movableColumns: true,
         columns: [
-            { title: 'Nome', field: 'nome'},
-            { title: 'Serviço', field: 'servico' },
-            { title: 'Telefone', field: 'telefone' },
-            { title: 'Trabalhando', field: 'trabalhando' },
-            { title: 'Ativo', field: 'ativo' }
+            { title: 'Nome', field: 'nome', headerFilter: 'input' },
+            { title: 'Serviço', field: 'servico', headerFilter: 'input' },
+            { title: 'Telefone', field: 'telefone', headerFilter: 'input' },
+            { title: 'Férias?', field: 'trabalhando', headerFilter: 'tickCross',  headerFilterParams: { tristate: true }, headerFilterEmptyCheck: (value) => {return value === null} },
+            { title: 'Ativo', field: 'ativo', headerFilter: 'tickCross',  headerFilterParams: { tristate: true }, headerFilterEmptyCheck: (value) => {return value === null} }
         ]
     });
+
+    table.on('rowClick', (oEvent, oRow) => {
+        $('#funcionarioModal').modal('show');
+        this.onTableRowClick(oRow);
+    });    
 }
 
 function relatorioListarServicos() {

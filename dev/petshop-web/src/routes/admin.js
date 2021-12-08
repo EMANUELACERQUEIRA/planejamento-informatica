@@ -1,6 +1,7 @@
 import express from "express";
 import Servicos from '../db/controllers/ServicoController.js';
 import Calendarios from '../db/controllers/CalendarioController.js';
+import Clientes from "../db/controllers/ClientesController.js";
 
 const routes = express.Router();
 var msg = { tipo: '', msg: ''};
@@ -27,6 +28,25 @@ routes.get('/clientes', (req, res, next) => {
         res.render('lista_clientes', { ssn: ssn.login });
     else
         res.render('index', { data: req.body });
+});
+
+routes.post('/clientes', async (req, res, next) => {
+    // let ssn = req.login;
+    // if (ssn.login) {
+        await Clientes.gravarCliente(req)
+            .then(response => {
+                msg = response;
+            })
+            .catch(err => {
+                msg.tipo = 'alert';
+                msg.msg = err;
+            })
+        ;
+        
+    //    res.render('lista_clientes', { ssn: ssn.login, msg: msg });
+    //} else {
+    //    res.render('index', { data: req.body });
+    //}
 });
 
 routes.get('/funcionarios', (req, res, next) => {

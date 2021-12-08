@@ -1,0 +1,82 @@
+extends layouts/cliente-layout.pug
+
+block main
+    form.row.g-3( id="clienteForm" method="POST" action="/")
+        .col-12( hidden )    
+            label.form-label( for="id" ) Id
+            input.form-control( type="text" name="id" id="id" )
+        .col-12
+            label.form-label( for="nome" ) Nome
+            input.form-control( name="nome" id="nome" required )
+        .nav.nav-tabs
+            button.nav-link( id="nav-telefone-tab" data-bs-toggle="tab" data-bs-target="#nav-telefone" type="button" role="tab" aria-controls="nav-telefone" aria-selected="true" ) Telefones
+            button.nav-link( id="nav-endereco-tab" data-bs-toggle="tab" data-bs-target="#nav-endereco" type="button" role="tab" aria-controls="nav-endereco" aria-selected="true" ) Endereço
+            button.nav-link( id="nav-acesso-tab" data-bs-toggle="tab" data-bs-target="#nav-acesso" type="button" role="tab" aria-controls="nav-acesso" aria-selected="true" ) Trocar Senha
+        .tab-content( id="nav-tabContent" )
+            .tab-pane.fade.show.active( id="nav-telefone" role="tabpanel" aria-labelledby="nav-telefone-tab" )
+                .row.align-items-end
+                    .col-sm
+                        label.form-label( for="tipoTelefone" ) Tipo
+                        input.form-control( name="tipoTelefone" id="tipoTelefone" required )
+                    .col-sm
+                        label.form-label( for="telefone" ) Telefone
+                        input.form-control( name="telefone" id="telefone" required )
+                    .col-md
+                        label.form-label( for="nomeContato" ) Nome de Contato
+                        input.form-control( name="nomeContato" id="nomeContato" )
+                    .col-sm
+                        button.btn.btn-success( type="button" ) +    
+                table.table.table-striped
+                    thead
+                        tr
+                            th( scope="col" ) Tipo
+                            th( scope="col" ) Telefone
+                            th( scope="col" ) Nome de Contato
+                            th
+                    tbody
+                        tr
+                            th( scope="row" ) Celular
+                            td (11) 97654-4321
+                            td
+                            td 
+                                button.btn.btn-danger( type="button" )
+                                    svg( xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" )
+                                        path( d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" )
+                                        path( fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" )
+            .tab-pane.fane( id="nav-endereco" role="tabpanel" aria-labelledby="nav-endereco-tab" )
+                .col-12( hidden )    
+                    label.form-label( for="enderecoId" ) Id do Endereco
+                    input.form-control( type="text" name="enderecoId" id="enderecoId" )
+                .row
+                    .col-sm
+                        label.form-label( for="cep" ) CEP
+                        input.form-control( name="cep" id="cep" )
+                    .col-md.col-lg-9
+                        label.form-label( for="endereco" ) Endereço
+                        input.form-control( name="endereco" id="endereco" disabled readonly )
+                .row
+                    .col-sm
+                        label.form-label( for="numero" ) Número
+                        input.form-control( name="numero" id="numero" )
+                    .col-sm
+                        label.form-label( for="complemento" ) Complemento
+                        input.form-control( name="complemento" id="complemento" )
+                    .col-sm-12.col-lg-6
+                        label.form-label( for="bairro" ) Bairro
+                        input.form-control( name="bairro" id="bairro" disabled readonly )
+                .col-12
+                    label.form-label( for="referencia" ) Referência
+                    input.form-control( name="referencia" id="referencia" )
+            .tab-pane.fane( id="nav-acesso" role="tabpanel" aria-labelledby="nav-acesso-tab" )
+                .col-12
+                    label.form-label( for="email" ) E-mail
+                    input.form-control( type="email" name="email" id="email" required )
+                .row
+                    label.form-label( for="senha" ) Trocar senha
+                    .input-group( id="senha" name="senha" )
+                        input.form-control.col-md( type="password", name="senha1", id="senha1" )
+                        span.mx-4
+                        input.form-control.col-md( type="password", name="senha2", id="senha2" )
+
+        .modal-footer
+            button.btn.btn-primary( type="submit" ) Gravar

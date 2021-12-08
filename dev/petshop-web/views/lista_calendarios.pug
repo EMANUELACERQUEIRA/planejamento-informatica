@@ -10,7 +10,7 @@ block main
     div( id="table_calendarios" )
 
     div.modal.fade( id="calendarioModal", tabindex="-1", aria-labelledby="calendarioModalLabel" aria-hidden="true" )
-        .modal-dialog.modal-dialog-centered
+        .modal-dialog.modal-dialog-centered.modal-lg
             .modal-content
                 .modal-header
                     h5.modal-title( id="calendarioModalLabel" ) Calendário
@@ -26,9 +26,9 @@ block main
                         .mb-3
                             label( for="descricao" ) Descricao
                             textarea.form-control( name="descricao", id="descricao", required )
-                        .control-group
-                            label.form-label( for="horarioDe" ) Dias da Semana
-                            .row
+                        .col-12
+                            label.form-label( for="diasSemana" ) Dias da Semana
+                            .row.control-group.ms-0( id="diasSemana" nome="diasSemana" )
                                 .form-check.form-switch.col-md-4
                                     input.form-check-input( type="checkbox", name="segunda", id="segunda", role="switch", checked )
                                     label.form-check-label( for="segunda" ) Segunda-feira
@@ -50,15 +50,17 @@ block main
                                 .form-check.form-switch.col-md-4
                                     input.form-check-input( type="checkbox", name="domingo", id="domingo", role="switch", checked )
                                     label.form-check-label( for="domingo" ) Domingo
-                        .row
-                            label.form-label( for="horarioDe" ) Horário
-                            .input-group
-                                input.form-control( type="time", name="horarioDe", id="horarioDe", required )
-                                label.col-sm.text-center.align-item-center( for="horarioAte" ) até
-                                input.form-control( type="time", name="horarioAte", id="horarioAte", required )
-                        .form-check.form-switch.col-6
-                            input.form-check-input( type="checkbox", name="ativo", checked, role="switch" )
-                            label.form-check-label( for="ativo" ) Calendário ativo
+                        .row.mt-2.align-items-center
+                            .col-lg
+                                label.form-label( for="horarioDe" ) Horário
+                                .input-group
+                                    input.form-control.col-md( type="time", name="horarioDe", id="horarioDe", required )
+                                    label.col-sm.text-center.align-item-center( for="horarioAte" ) até
+                                    input.form-control.col-md( type="time", name="horarioAte", id="horarioAte", required )
+                            .col-md
+                                .form-check.form-switch.mt-2
+                                    input.form-check-input( type="checkbox", name="ativo", checked, role="switch" )
+                                    label.form-check-label( for="ativo" ) Calendário ativo
                         .modal-footer
                             button.btn.btn-secondary( type="reset" data-bs-dismiss="modal" ) Cancelar
                             button.btn.btn-danger( type="button", id="excluirButton", hidden, onClick="onClickExcluirCalendario()" ) Excluir

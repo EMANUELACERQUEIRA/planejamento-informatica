@@ -12,20 +12,20 @@ export default class Controller {
     async create(body) {
         const nomeModel = this.nomeModel;
         let msg = {};
-        let servico = {};
+        let registro = {};
         let dados = body;
         dados.createdAt = new Date();
         dados.id = uuidv4();
 
         await this.Model.create(dados)
             .then(response => {
-                servico = response.dataValues;
+                registro = response.dataValues;
                 msg = {
                     tipo: 'success',
-                    msg: `O ${nomeModel} ${servico.nome} cadastrado com sucesso.`
+                    msg: `O ${nomeModel} ${registro.nome || registro.usuario} cadastrado com sucesso.`
                 };
             })
-            .catch(err => {
+            .catch(() => {
                 msg = {
                     tipo: 'alert',
                     msg: `Erro no cadastro do ${nomeModel} ${dados.nome}`
@@ -33,7 +33,7 @@ export default class Controller {
             })
         ;
         
-        return { servico: servico, msg: msg };
+        return { registro, msg };
     }
 
     async listAll() {
@@ -53,43 +53,43 @@ export default class Controller {
     }
 
     async read(body) {
-        const result = await this.Model.findOne({ where: { id: body.id } });
         return this.formartData(element.dataValues);
     }
 
     async update(body) {
-        let response = {};
         let dados = body;
         dados.updatedAt = new Date();
 
-        await this.Model.findOne({ where: { id: body.id } })
-            .then(old => {
+        return await this.Model.findOne({ where: { id: body.id } })
+            .then(async () => {
                 const set = {};
 
                 for (let key in dados) {
                     set[key] = dados[key];
                 }
 
-                this.Model.update(set, { where: { id: dados.id } })
-                    .then(update => {
+                return await this.Model.update(set, { where: { id: dados.id } })
+                    .then(async update => {
                         if (update[0] === 1) {
-                            this.Model.findOne({ where: { id: dados.id } })
+                            return await this.Model.findOne({ where: { id: dados.id } })
                                 .then(novo => {
-                                    response = novo.dataValues;
-                            });
+                                    return novo.dataValues;
+                                })
+                                .catch(() => {
+                                    return {};
+                                })
+                            ;
                         }
                     })
-                    .catch(err => {
-                        response = { msg: 'Erro ao atualizar o registro' };
+                    .catch(() => {
+                        return { msg: 'Erro ao atualizar o registro' };
                     })
                 ;
             })
-            .catch(err => {
-                response = { msg: `${this.nomeModel} ${dados.nome} não encontrado.` };
+            .catch(() => {
+                return { msg: `${this.nomeModel} ${dados.nome} não encontrado.` };
             })
         ;
-        
-        return response;
     }
 
     async save(req) {
@@ -97,13 +97,13 @@ export default class Controller {
         let registro = {};
         let dados = this.formartData(req.body);
         
-        if (dados.id.length > 0) {
+        if (dados.id?.length > 0) {
             await this.update(dados)
                 .then(response => {
                     registro = response;
                     if (response.id) {
                         msg.tipo = 'success';
-                        msg.msg = `${this.nomeModel} ${response.nome} atualizado com sucesso.`;
+                        msg.msg = `${this.nomeModel} ${response.nome || response.usuario} atualizado com sucesso.`;
                     } else {
                         msg.tipo = 'alert';
                         msg.msg = `Erro ao atualizar o ${this.nomeModel} ${response.nome}.`;
@@ -117,7 +117,7 @@ export default class Controller {
         } else {
             await this.create(dados)
                 .then(response => {
-                    registro = response;
+                    registro = response.registro;
                     if (response.id) {
                         msg.tipo = 'success';
                         msg.msg = `${this.nomeModel} ${response.nome} cadastrado com sucesso.`;

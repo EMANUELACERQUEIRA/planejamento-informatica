@@ -8,10 +8,11 @@ block main
         .h2 Dashboard
         .btn-toolbar.mb-2.mb-md-0
             .btn-group.me-2
-                button.btn.btn-sm.btn-outline-secondary( type="button" ) Compartilhar
                 button.btn.btn-sm.btn-outline-secondary( type="button" ) Exportar
-            button.btn.btn-sm.btn-outline-secondary.dropdown-toggle Esta semana
-    canvas.my-4.w-100.chartjs-render-monitor( id="myChart", name="myChart", style="display: block; width: 616px; height: 260px;", width="616", height="260" )
+            button.btn.btn-sm.btn-outline-secondary.dropdown-toggle
+                span( data-feather="calendar" ) Esta semana
+    
+    canvas.my-4.w-100.chartjs-render-monitor( id="myChart", name="myChart", style="display: block; height: 15rem;" )
 
     h2 Agendamentos de hoje
     .table-responsive
@@ -31,3 +32,5 @@ block main
                     td Cristiano
                     td Banho e tosa
 
+    script( type="text/javascript" ).
+        dashboardAdmin();

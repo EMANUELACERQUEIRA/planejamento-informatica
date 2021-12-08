@@ -5,7 +5,7 @@ import { Sequelize } from 'sequelize';
 import SequelizeAuto from 'sequelize-auto';
 import initModels from './init-models.js';
 
-const env = process.env.CLIENT || 'development';
+const env = process.env.NODE_ENV || 'development';
 
 const sequelize = _openConnection(env);
 const db = initModels(sequelize);
