@@ -24,7 +24,7 @@ app.use(favicon(path.join(rootDir, 'public','img','favicon.ico')));
 app.set('view engine', 'pug');
 app.set('views', 'views');
 
-// Midlleware
+// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
