@@ -1,0 +1,49 @@
+extends layouts/admin-layout.pug
+
+block main
+    .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        .h2 Raças
+        .btn-toolbar.mb-2.mb-md-0
+            button.btn.btn-sm.btn-outline-secondary( id="atualizarRelatorio", type="button" ) Atualizar
+            button.btn.btn-sm.btn-outline-secondary( data-bs-toggle="modal", data-bs-target="#racaModal" ) Nova Raça
+            button.btn.btn-sm.btn-outline-secondary( id="exportarRelatorio", type="button" ) Exportar
+    div( id="table_racas" )
+
+    div.modal.fade( id="racaModal", tabindex="-1", aria-labelledby="racaModalLabel" aria-hidden="true" )
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.modal-title( id="racaModalLabel" ) Raças
+                    button.btn-close( type="reset", data-bs-dismiss="modal", aria-label="Close" )
+                .modal-body
+                    form.row.g-3( id="racaForm", method="POST" )
+                        .col-12( hidden )    
+                            label.form-label( for="id" ) Id
+                            input.form-control( type="text", name="id", id="id" )
+                        .col-12
+                            label.form-label( for="nome" ) Nome
+                            input.form-control( name="nome", id="nome", required )
+                        .col-12
+                            label.form-label( for="descricao" ) Descrição
+                            textarea.form-control( name="descricao", id="descricao", required )
+                        .col-6
+                            label.form-label( for="tamanho" ) Tamanho
+                            select.form-select( name="tamanho", id="tamanho", required )
+                                option( selected ) Selecionar o tamanho
+                                option( value='PP' ) Mini / Toy
+                                option( value='P' ) Pequeno
+                                option( value='M' ) Médio
+                                option( value='G' ) Grande
+                                option( value='GG' ) Gigantes
+                        .form-check.form-switch.col-6
+                            input.form-check-input( type="checkbox", name="ativo", id="ativo", checked, role="switch" )
+                            label.form-check-label( for="ativo" ) Raça ativa
+                        .modal-footer
+                            button.btn.btn-secondary( type="reset", data-bs-dismiss="modal" ) Cancelar
+                            button.btn.btn-danger( type="button", id="excluirButton", hidden, onClick="onClickExcluirRaca()" ) Excluir
+                            button.btn.btn-primary( type="submit" ) Gravar
+    
+    include includes/msg-alert.pug
+
+    script( type="text/javascript" ).
+        relatorioListarRacas();

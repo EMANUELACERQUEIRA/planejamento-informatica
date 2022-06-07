@@ -1,5 +1,6 @@
 import express from 'express';
 import Usuario from '../db/controllers/UsuarioController.js';
+import Cliente from '../db/controllers/ClientesController.js';
 
 const router = express.Router();
 
@@ -11,6 +12,18 @@ router.get('/login', (req, res, next) => {
     res.render('login', {data: req.body });
 });
 
+router.post('/landing', async (req, res, next) => {
+    let ssn = req.session;
+    await Cliente.gravarCliente(req)
+        .then(response => {
+            ssn.login = response.usuario;
+            res.redirect('/cliente');
+        })
+        .catch(err => {
+            res.redirect('/', { msg: 'Cliente já possiu cadastro' });
+        });
+});
+
 router.post('/login', async (req, res, next) => {
     let ssn = req.session;
     await Usuario.login(req, res)
@@ -19,11 +32,11 @@ router.post('/login', async (req, res, next) => {
                 ssn.login = login;
                 res.redirect(`/${login.tipo}`);
             } else {
-                res.render('login', { msg: login } );
+                res.redirect('/login', { msg: login } );
             }
         })
         .catch(err => {
-            res.render( 'login', { msg: login } )
+            res.redirect( '/login', { msg: login } )
         });
 });
 

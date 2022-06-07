@@ -1,0 +1,257 @@
+// ======= Hero Section =======
+section#hero
+  #heroCarousel.carousel.slide.carousel-fade(data-bs-interval='5000' data-bs-ride='carousel')
+    ol#hero-carousel-indicators.carousel-indicators
+    .carousel-inner(role='listbox')
+      // Slide 1
+      .carousel-item.active(style='background-image: url(assets/img/slide/slide-1.jpeg)')
+        .carousel-container
+          .container
+            h2.animate__animated.animate__fadeInDown
+              | Petshop 
+              span Pelos e Patas
+            p.animate__animated.animate__fadeInUp
+              | Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.
+            a.btn-get-started.animate__animated.animate__fadeInUp.scrollto(href='#sobre') Saiba mais
+      // Slide 2
+      .carousel-item(style='background-image: url(assets/img/slide/slide-2.jpeg)')
+        .carousel-container
+          .container
+            h2.animate__animated.animate__fadeInDown Lorem Ipsum Dolor
+            p.animate__animated.animate__fadeInUp
+              | Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.
+            a.btn-get-started.animate__animated.animate__fadeInUp.scrollto(href='#sobre') Saiba mais
+      // Slide 3
+      .carousel-item(style='background-image: url(assets/img/slide/slide-3.jpeg)')
+        .carousel-container
+          .container
+            h2.animate__animated.animate__fadeInDown Sequi ea ut et est quaerat
+            p.animate__animated.animate__fadeInUp
+              | Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.
+            a.btn-get-started.animate__animated.animate__fadeInUp.scrollto(href='#servicos') Saiba mais
+    a.carousel-control-prev(href='#heroCarousel' role='button' data-bs-slide='prev')
+      span.carousel-control-prev-icon.bi.bi-chevron-left(aria-hidden='true')
+    a.carousel-control-next(href='#heroCarousel' role='button' data-bs-slide='next')
+      span.carousel-control-next-icon.bi.bi-chevron-right(aria-hidden='true')
+// End Hero
+
+main#main
+  // ======= Sobre Section =======
+  section#sobre.about
+    .container(data-aos='fade-up')
+      .section-title
+        h2 Sobre
+        p Sobre nós
+      .row.content
+        .col-lg-6
+          p
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            | magna aliqua.
+          ul
+            li
+              i.ri-check-double-line
+              |  Ullamco laboris nisi ut aliquip ex ea commodo consequat
+            li
+              i.ri-check-double-line
+              |  Duis aute irure dolor in reprehenderit in voluptate velit
+            li
+              i.ri-check-double-line
+              |  Ullamco laboris nisi ut aliquip ex ea commodo consequat
+        .col-lg-6.pt-4.pt-lg-0
+          p
+            | Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+            | velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            | culpa qui officia deserunt mollit anim id est laborum.
+          a.btn-learn-more(href='#') Learn More
+  // End About Section
+
+  // ======= Testimonials Section =======
+  section#testimonials.testimonials.section-bg
+    .container(data-aos='fade-up')
+      .section-title
+        h2 Testemunhos
+        p Testemunhos
+      .testimonials-slider.swiper(data-aos='fade-up' data-aos-delay='100')
+        .swiper-wrapper
+          .swiper-slide
+            .testimonial-wrap
+              .testimonial-item
+                img.testimonial-img(src='assets/img/testimonials/testimonials-1.jpg' alt='')
+                h3 Saul Goodman
+                h4 Ceo &amp; Founder
+                p
+                  i.bx.bxs-quote-alt-left.quote-icon-left
+                  |                     Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  i.bx.bxs-quote-alt-right.quote-icon-right
+          // End testimonial item
+          .swiper-slide
+            .testimonial-wrap
+              .testimonial-item
+                img.testimonial-img(src='assets/img/testimonials/testimonials-2.jpg' alt='')
+                h3 Sara Wilsson
+                h4 Designer
+                p
+                  i.bx.bxs-quote-alt-left.quote-icon-left
+                  |                     Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                  i.bx.bxs-quote-alt-right.quote-icon-right
+          // End testimonial item
+          .swiper-slide
+            .testimonial-wrap
+              .testimonial-item
+                img.testimonial-img(src='assets/img/testimonials/testimonials-3.jpg' alt='')
+                h3 Jena Karlis
+                h4 Store Owner
+                p
+                  i.bx.bxs-quote-alt-left.quote-icon-left
+                  |                     Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  i.bx.bxs-quote-alt-right.quote-icon-right
+          // End testimonial item
+          .swiper-slide
+            .testimonial-wrap
+              .testimonial-item
+                img.testimonial-img(src='assets/img/testimonials/testimonials-4.jpg' alt='')
+                h3 Matt Brandon
+                h4 Freelancer
+                p
+                  i.bx.bxs-quote-alt-left.quote-icon-left
+                  |                     Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                  i.bx.bxs-quote-alt-right.quote-icon-right
+          // End testimonial item
+          .swiper-slide
+            .testimonial-wrap
+              .testimonial-item
+                img.testimonial-img(src='assets/img/testimonials/testimonials-5.jpg' alt='')
+                h3 John Larson
+                h4 Entrepreneur
+                p
+                  i.bx.bxs-quote-alt-left.quote-icon-left
+                  |                     Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                  i.bx.bxs-quote-alt-right.quote-icon-right
+          // End testimonial item
+        .swiper-pagination
+  // End Testimonials Section
+
+  // ======= Cta Section =======
+  section#cta.cta
+    .container(data-aos='zoom-in')
+      .text-center
+        h3 Fale conosco
+        p
+          | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        a.cta-btn(href='#contact') Fale Conosco
+  // End Cta Section
+
+  // ======= Serviços Section =======
+  section#servicos.pricing
+    .container(data-aos='fade-up')
+      .section-title
+        h2 Serviços
+        p Nossos Serviços
+      .row.align-items-center
+        .col-lg-4
+          .box(data-aos='zoom-in' data-aos-delay='100')
+            h3 Banho e Tosa
+            ul
+              li
+                i.bx.bx-check
+                |  Quam adipiscing vitae proin
+              li
+                i.bx.bx-check
+                |  Nec feugiat nisl pretium
+              li
+                i.bx.bx-check
+                |  Nulla at volutpat diam uteera
+              li
+                i.bx.bx-check
+                span Pharetra massa massa ultricies
+              li
+                i.bx.bx-check
+                span Massa ultricies mi quis hendrerit
+            a.get-started-btn(href='/login') Agendar
+        .col-lg-4
+          .box(data-aos='zoom-in' data-aos-delay='100')
+            h3 Taxi Dog
+            ul
+              li
+                i.bx.bx-check
+                |  Quam adipiscing vitae proin
+              li
+                i.bx.bx-check
+                |  Nec feugiat nisl pretium
+              li
+                i.bx.bx-check
+                |  Nulla at volutpat diam uteera
+              li
+                i.bx.bx-check
+                |  Pharetra massa massa ultricies
+              li
+                i.bx.bx-check
+                |  Massa ultricies mi quis hendrerit
+            a.get-started-btn(href='/login') Agendar
+        .col-lg-4
+          .box(data-aos='zoom-in' data-aos-delay='100')
+            h3 Veterinário
+            ul
+              li
+                i.bx.bx-check
+                |  Quam adipiscing vitae proin
+              li
+                i.bx.bx-check
+                |  Nec feugiat nisl pretium
+              li
+                i.bx.bx-check
+                |  Nulla at volutpat diam uteera
+              li
+                i.bx.bx-check
+                |  Pharetra massa massa ultricies
+              li
+                i.bx.bx-check
+                |  Massa ultricies mi quis hendrerit
+            a.get-started-btn(href='/login') Agendar
+  // End Serviços Section
+  
+  // ======= Contact Section =======
+  section#contact.contact.section-bg
+    .container(data-aos='fade-up')
+      .section-title
+        h2 Contato
+        p Fale conosco
+      .row
+        .col-lg-6
+          .row
+            .col-md-12
+              .info-box
+                i.bx.bx-map
+                h3 Endereço
+                p Rua Guaranésia, 425 , São Paulo, SP 02112-000
+            .col-md-6
+              .info-box.mt-4
+                i.bx.bx-envelope
+                h3 E-mail
+                p
+                  | contato@petshop.com.br
+            .col-md-6
+              .info-box.mt-4
+                i.bx.bx-phone-call
+                h3 Telefone
+                p
+                  | (11) 94930-6894
+        .col-lg-6
+          form.php-email-form(action='forms/contact.php' method='post' role='form')
+            .row
+              .col-md-6.form-group
+                input#name.form-control(type='text' name='name' placeholder='Your Name' required='')
+              .col-md-6.form-group.mt-3.mt-md-0
+                input#email.form-control(type='email' name='email' placeholder='Your Email' required='')
+            .form-group.mt-3
+              input#subject.form-control(type='text' name='subject' placeholder='Subject' required='')
+            .form-group.mt-3
+              textarea.form-control(name='message' rows='5' placeholder='Message' required='')
+            .my-3
+              .loading Loading
+              .error-message
+              .sent-message Your message has been sent. Thank you!
+            .text-center
+              button(type='submit') Send Message
+  // End Contact Section
+// End #main

@@ -25,10 +25,11 @@ export default class Controller {
                     msg: `O ${nomeModel} ${registro.nome || registro.usuario} cadastrado com sucesso.`
                 };
             })
-            .catch(() => {
+            .catch((error) => {
                 msg = {
                     tipo: 'alert',
-                    msg: `Erro no cadastro do ${nomeModel} ${dados.nome}`
+                    msg: `Erro no cadastro do ${nomeModel} ${dados.nome}`,
+                    exception: error
                 };
             })
         ;
@@ -53,7 +54,20 @@ export default class Controller {
     }
 
     async read(body) {
-        return this.formartData(element.dataValues);
+        let where = this.formartData(body);
+        let dados = await this.Model.findOne({ where: where })
+            .then(response => { 
+                return response || {};
+            })
+            .catch(err => { 
+                return {};
+            });
+
+        for (let key in this.Model.fieldRawAttributesMap) {
+            dados[key] = dados[key] || '';
+        }
+        
+        return dados;
     }
 
     async update(body) {
@@ -118,13 +132,7 @@ export default class Controller {
             await this.create(dados)
                 .then(response => {
                     registro = response.registro;
-                    if (response.id) {
-                        msg.tipo = 'success';
-                        msg.msg = `${this.nomeModel} ${response.nome} cadastrado com sucesso.`;
-                    } else {
-                        msg.tipo = 'alert';
-                        msg.msg = `Erro ao cadastrar o ${this.nomeModel} ${response.nome}.`;
-                    }
+                    msg = response.msg;
                 })
                 .catch(err => {
                     msg.tipo = 'alert';

@@ -1,13 +1,16 @@
 extends layouts/cliente-layout.pug
 
 block main
-    form.row.g-3( id="clienteForm" method="POST" action="/")
+    .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        .h2 Meus Dados
+
+    form.row.g-3( id="clienteForm" method="POST" action="/meusDados")
         .col-12( hidden )    
             label.form-label( for="id" ) Id
-            input.form-control( type="text" name="id" id="id" )
+            input.form-control( type="text" name="id" id="id" value=dados.id )
         .col-12
             label.form-label( for="nome" ) Nome
-            input.form-control( name="nome" id="nome" required )
+            input.form-control( name="nome" id="nome" value=dados.nome required )
         .nav.nav-tabs
             button.nav-link( id="nav-telefone-tab" data-bs-toggle="tab" data-bs-target="#nav-telefone" type="button" role="tab" aria-controls="nav-telefone" aria-selected="true" ) Telefones
             button.nav-link( id="nav-endereco-tab" data-bs-toggle="tab" data-bs-target="#nav-endereco" type="button" role="tab" aria-controls="nav-endereco" aria-selected="true" ) Endereço
@@ -46,31 +49,38 @@ block main
             .tab-pane.fane( id="nav-endereco" role="tabpanel" aria-labelledby="nav-endereco-tab" )
                 .col-12( hidden )    
                     label.form-label( for="enderecoId" ) Id do Endereco
-                    input.form-control( type="text" name="enderecoId" id="enderecoId" )
+                    input.form-control( type="text" name="enderecoId" id="enderecoId" value=dados.endereco.id)
                 .row
                     .col-sm
                         label.form-label( for="cep" ) CEP
-                        input.form-control( name="cep" id="cep" )
+                        input.form-control( name="cep" id="cep" value=dados.endereco.cep)
                     .col-md.col-lg-9
-                        label.form-label( for="endereco" ) Endereço
-                        input.form-control( name="endereco" id="endereco" disabled readonly )
+                        label.form-label( for="logradouro" ) Endereço
+                        input.form-control( name="logradouro" id="logradouro" value=dados.endereco.logradouro disabled readonly )
                 .row
                     .col-sm
                         label.form-label( for="numero" ) Número
-                        input.form-control( name="numero" id="numero" )
+                        input.form-control( name="numero" id="numero" value=dados.endereco.numero)
                     .col-sm
                         label.form-label( for="complemento" ) Complemento
-                        input.form-control( name="complemento" id="complemento" )
+                        input.form-control( name="complemento" id="complemento" value=dados.endereco.complemento)
                     .col-sm-12.col-lg-6
                         label.form-label( for="bairro" ) Bairro
-                        input.form-control( name="bairro" id="bairro" disabled readonly )
-                .col-12
-                    label.form-label( for="referencia" ) Referência
-                    input.form-control( name="referencia" id="referencia" )
+                        input.form-control( name="bairro" id="bairro" value=dados.endereco.bairro disabled readonly )
+                .row
+                    .col-sm
+                        label.form-label( for="cidade" ) Cidade
+                        input.form-control( name="cidade" id="cidade" value=dados.endereco.cidade disabled readonly )
+                    .col-sm
+                        label.form-label( for="uf" ) Estado
+                        input.form-control( name="uf" id="uf" value=dados.endereco.uf disabled readonly )
+                    .col-12( hidden ) 
+                        label.form-label( for="ibge" ) IBGE
+                        input.form-control( name="ibge" id="ibge" value=dados.endereco.ibge )
             .tab-pane.fane( id="nav-acesso" role="tabpanel" aria-labelledby="nav-acesso-tab" )
                 .col-12
                     label.form-label( for="email" ) E-mail
-                    input.form-control( type="email" name="email" id="email" required )
+                    input.form-control( type="email" name="email" id="email" value=dados.email required )
                 .row
                     label.form-label( for="senha" ) Trocar senha
                     .input-group( id="senha" name="senha" )

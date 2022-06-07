@@ -1,8 +1,9 @@
 'use strict';
 import fs from 'fs';
 import path from 'path';
-import { Sequelize } from 'sequelize';
-import SequelizeAuto from 'sequelize-auto';
+import {
+  Sequelize
+} from 'sequelize';
 import initModels from './init-models.js';
 
 const env = process.env.NODE_ENV || 'development';
@@ -16,7 +17,16 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-sequelize.sync({ alter: true });
+(async () => {
+  try {
+    const resultado = await sequelize.sync({
+      alter: true
+    });
+    console.log(resultado);
+  } catch (error) {
+    console.log(error);
+  }
+})();
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
@@ -30,7 +40,7 @@ export default db;
  * @param {String} client  nome do ambiente ( development, test, production )
  * @returns {Object}  configuracao do banco de dados
  */
-function _readConfig (client) {
+function _readConfig(client) {
   const sFile = path.resolve('src/db/config/config.json');
   const config = JSON.parse(fs.readFileSync(sFile, 'utf-8'));
   return config[client];

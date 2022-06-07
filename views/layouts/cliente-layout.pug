@@ -1,10 +1,10 @@
-extends main-layout.pug
+extends ./main-layout.pug
 
 block nav
     include ../includes/nav-sistema.pug
 
 block content
-    .row
+    .row( style="margin-top: 80px;")
         include ../includes/navbar-sistema.pug
             block navbar
                 ul.nav.flex-column

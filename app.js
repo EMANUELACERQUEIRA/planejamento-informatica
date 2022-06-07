@@ -18,23 +18,25 @@ const PORT = process.env.PORT || 4100 //Se a variavel de ambiente PORT não esti
 const app = express();
 
 //favicon
-app.use(favicon(path.join(rootDir, 'public','img','favicon.ico')));
+app.use(favicon(path.join(rootDir, 'public', 'assets', 'img','favicon.ico')));
 
 // Pug
 app.set('view engine', 'pug');
 app.set('views', 'views');
 
-// Middleware
+// Midlleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, 'public')));
-app.use(favicon(path.join(rootDir,'public','img','favicon.ico')));
 
 // Bootstrap
-app.use('/static/css', express.static(path.join(rootDir, 'node_modules/bootstrap/dist/css')));
-app.use('/static/js', express.static(path.join(rootDir, 'node_modules/bootstrap/dist/js')));
-app.use('/static/icon', express.static(path.join(rootDir, 'node_modules/bootstrap-icons/icons')));
+//app.use('/static/bootstrap/css', express.static(path.join(rootDir, 'node_modules/bootstrap/dist/css')));
+//app.use('/static/bootstrap/js', express.static(path.join(rootDir, 'node_modules/bootstrap/dist/js')));
+//app.use('/static/bootstrap/icon', express.static(path.join(rootDir, 'node_modules/bootstrap-icons/icons')));
+
+// Bootstrap-Table
+app.use('/static/bootstrap-table', express.static(path.join(rootDir, 'node_modules/bootstrap-table/dist')));
 
 // JQuery
 app.use('/static/js', express.static(path.join(rootDir, 'node_modules/jquery/dist')));

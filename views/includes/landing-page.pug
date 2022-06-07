@@ -1,0 +1,24 @@
+.modal.fade( id="landingPage" tabindex="-1" )
+    .modal-dialog.modal-xl
+        .modal-content.landing
+            .modal-body
+                .row
+                    .col 
+                        img.img-fluid(src="assets/img/logo.png", alt="Logo da petshop com cachorrinho e gatinho")
+                    .col.my-auto
+                        p.h4 Promoção Pet Fofinho
+                        p.h2.my-4( style="max-width: 50%;" ) 10% de desconto e brinde exclusivo
+                        p.h4 Válido para o primeiro serviço
+                .row
+                    .col.my-auto
+                        form(action="/landing", method="post")
+                            .form-floating.mb-3
+                                input.form-control( type="text", name="nome", placeholder="Seu nome", required )
+                                label( for="nome" ) Nome                        
+                            .form-floating.mb-3
+                                input.form-control( type="email", name="email", placeholder="name@example.com", required )
+                                label( for="email" ) E-mail
+                            button.w-100.btn.btn-primary( type="submit" id="cadastrar" ) Cadastrar
+                    .col
+                        img.img-fluid.rounded.float-end(src="assets/img/animais_comendo.png", alt="Animais comendo ração")
+        

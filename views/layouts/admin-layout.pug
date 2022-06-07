@@ -4,7 +4,7 @@ block nav
     include ../includes/nav-sistema.pug
 
 block content
-    .row
+    .row( style="margin-top: 80px;")
         include ../includes/navbar-sistema.pug
             block navbar
                 ul.nav.flex-column
@@ -26,6 +26,8 @@ block content
                         a.nav-link( href="/admin/servicos" ) Serviços
                     li.nav-item
                         a.nav-link( href="/admin/calendarios" ) Calendário
+                    li.nav-item
+                        a.nav-link( href="/admin/racas" ) Raças
         main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
             block main
     

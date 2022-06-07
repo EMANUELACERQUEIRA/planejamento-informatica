@@ -13,8 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
     "bootstrap": "^5.1.3",
     "bootstrap-icons": "^1.7.1",
+    "bootstrap-table": "^1.20.2",
     "chart.js": "^3.6.2",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -23,10 +25,9 @@
     "express-validator": "^6.13.0",
     "jquery": "^3.6.0",
     "pug": "^3.0.2",
-    "sequelize": "^6.11.0",
-    "sequelize-auto": "^0.8.5",
+    "sequelize": "^6.19.0",
     "serve-favicon": "^2.5.0",
-    "sqlite3": "^4.2.0",
+    "sqlite3": "^5.0.7",
     "tabulator-tables": "^5.0.7",
     "uuid": "^8.3.2"
   },
@@ -37,6 +38,6 @@
     "@babel/preset-env": "^7.16.4",
     "babel-plugin-add-module-exports": "^1.0.4",
     "babel-preset-es2015": "^6.24.1",
-    "sequelize-cli": "^6.3.0"
+    "sequelize-cli": "^6.4.1"
   }
 }

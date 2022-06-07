@@ -1,4 +1,5 @@
 import db from '../index.js';
+import bcrypt from 'bcrypt';
 import Controller from './DefaultController.js';
 
 class UsuarioController extends Controller {
@@ -11,28 +12,33 @@ class UsuarioController extends Controller {
         const controller = this;
         const Model = controller.Model;
 
-        return await Model.findOne({
-            where: {
-                usuario: req.body.usuario,
-                senha: req.body.senha,
-                ativo: true
-            }
-        })
-            .then(async result => {
+        return Model.findOne({
+                where: {
+                    usuario: req.body.usuario,
+                    senha: req.body.senha,
+                    ativo: true
+                }
+            })
+            .then(async (result) => {
                 const user = result.dataValues;
                 user.lastLogin = new Date();
 
-                return await controller.update(user)
-                    .then((response) => {
+                return controller.update(user)
+                    .then(async (response) => {
                         return response;
                     })
                     .catch(() => {
-                        return { tipo: 'alert', msg: 'Login indisponivel' };    
-                    })
-                ;
+                        return {
+                            tipo: 'alert',
+                            msg: 'Login indisponivel'
+                        };
+                    });
             })
-            .catch(() => {
-                return { tipo: 'alert', msg: 'Usuário e Senha inválido' };
+            .catch((err) => {
+                return {
+                    tipo: 'alert',
+                    msg: 'Usuário e Senha inválido'
+                };
             });
     }
 
@@ -42,13 +48,13 @@ class UsuarioController extends Controller {
         let msg = {};
 
         await Model.findOne({
-            where: {
-                id: login.id,
-                usuario: login.usuario,
-                senha: login.senha,
-                ativo: true
-            }
-        })
+                where: {
+                    id: login.id,
+                    usuario: login.usuario,
+                    senha: login.senha,
+                    ativo: true
+                }
+            })
             .then(async result => {
                 const user = result.dataValues;
                 user.lastLogout = new Date();
@@ -56,20 +62,31 @@ class UsuarioController extends Controller {
                 await controller.update(user)
                     .then(async (response) => {
                         if (response.usuario) {
-                            msg = { tipo: 'success', msg: 'Usuário desconectado, volte logo!' };
+                            msg = {
+                                tipo: 'success',
+                                msg: 'Usuário desconectado, volte logo!'
+                            };
                         } else {
-                            msg = { tipo: 'alert', msg: 'Usuário não encontrado!' };
+                            msg = {
+                                tipo: 'alert',
+                                msg: 'Usuário não encontrado!'
+                            };
                         }
                     })
                     .catch((err) => {
-                        msg = { tipo: 'alert', msg: 'Logout indisponivel' };
-                    })
-                ;
+                        msg = {
+                            tipo: 'alert',
+                            msg: 'Logout indisponivel'
+                        };
+                    });
             })
             .catch(err => {
-                msg = { tipo: 'alert', msg: 'Usuário e Senha inválido' };
+                msg = {
+                    tipo: 'alert',
+                    msg: 'Usuário e Senha inválido'
+                };
             });
-        
+
         return msg;
     }
 }

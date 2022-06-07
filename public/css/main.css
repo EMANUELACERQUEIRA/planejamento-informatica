@@ -5,12 +5,7 @@
     font-size: 1em;
 }
 
-main {
-    padding: 1rem;
-    margin: auto;
-}
-
-.container {
+.main {
     margin-top: 2rem;
 }
 
@@ -26,39 +21,35 @@ main {
 }
 
 .header-logo {
-    width: 60%;
+    width: 100%;
     padding-top: 1rem;
     padding-bottom: 1rem;    
 }
 
 .main-header {
     background-color: #D99F6C;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .main-header .title {
     text-align: center;
-    font-size: xx-large;
+    font-size: xxx-large;
     color: #401201;
 }
 
-.main-header .nav a {
+.main-header .nav-item a {
     text-decoration: none;
-    color: white;
+    color: #401201;
+    font-size: large;
 }
 
-.main-header .nav a:hover,
-.main-header .nav a:active,
-.main-header .nav a.active {
+.main-header .nav-item a:hover,
+.main-header .nav-item a:active,
+.main-header .nav-item a.active {
     color: #ffeb3b;
 }
 
 .panel-login {
-    margin-top: 3rem;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
+    margin: auto;
     border: 0.3rem;
     box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
     border-radius: 1rem;
@@ -124,8 +115,7 @@ main {
 footer {
     background-color: #D99F6C;
     height: 5rem;
-    align-items: center;
-    bottom: 0;
+    justify-content: center;
 }
 
 /* --------------------------------------------------

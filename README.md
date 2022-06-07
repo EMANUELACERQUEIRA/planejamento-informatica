@@ -27,6 +27,7 @@ Tabulator: http://tabulator.info
 Full Calendar: https://www.creative-tim.com/product/full-calendar#
 Bootstrap: https://getbootstrap.com
 Chart.js: https://www.chartjs.org/docs/latest/getting-started/
+Template: https://bootstrapmade.com/multi-responsive-bootstrap-template/
 
 ## Componentes do Back-end
 

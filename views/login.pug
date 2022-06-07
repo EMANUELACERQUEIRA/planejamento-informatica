@@ -4,23 +4,24 @@ block nav
     include includes/nav-home.pug
 
 block content
-    .panel-login
-        .title.h5.mb-3.fw-normal Acessar o agendamento
-        form(action="/login", method="POST")
-            .form-signin
-                .form-floating.mb-3
-                    input.form-control( type="email", name="usuario", placeholder="name@example.com", required )
-                    label( for="email" ) E-mail
-                .form-floating.mb-3
-                    input.form-control( type="password", name="senha", placeholder="Digite a sua senha", required )
-                    label( for="senha" ) Senha
-                .checkbox.mb-3
-                    label
-                        input(type="checkbox", value="remember")
-                        span Lembrar
-            .login-button
-                button.w-100.btn.btn-primary( type="submit" id="login" ) Entrar
-                button.w-100.btn.btn-primary( type="submit" id="facebook" ) Entrar com o Facebook
-                button.w-100.btn.btn-primary( type="submit" id="google" ) Entrar com o Google
-
+    .d-flex.vh-100.align-items-center.justify-content-center
+        .card.col-sm-4
+            .card-header.title.h5.mb-3.fw-normal Acessar o agendamento
+            .panel-body
+                form(action="/login", method="POST")
+                    .form-signin
+                        .form-floating.mb-3
+                            input.form-control( type="email", name="usuario", placeholder="name@example.com", required )
+                            label( for="email" ) E-mail
+                        .form-floating.mb-3
+                            input.form-control( type="password", name="senha", placeholder="Digite a sua senha", required )
+                            label( for="senha" ) Senha
+                        .checkbox.mb-3
+                            label
+                                input(type="checkbox", value="remember")
+                                span Lembrar
+                    .login-button
+                        button.w-100.btn.btn-primary( type="submit" id="login" ) Entrar
+                        button.w-100.btn.btn-primary( type="submit" id="facebook" ) Entrar com o Facebook
+                        button.w-100.btn.btn-primary( type="submit" id="google" ) Entrar com o Google
     include includes/msg-alert.pug

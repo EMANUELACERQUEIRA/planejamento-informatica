@@ -1,7 +1,13 @@
-span.title Pelos e Patas
-
-nav.nav
-    a.nav-link( aria-current="page" href="/#sobre" ) Sobre
-    a.nav-link(href="/#servicos") Serviços
-    a.nav-link(href="/#contato") Contato
-    a.nav-link(href="/login") Agendamento
+nav#navbar.navbar
+    ul
+        li
+        a.nav-link.scrollto.active(href='#hero') Home
+        li
+        a.nav-link.scrollto(href='#sobre') Sobre
+        li
+        a.nav-link.scrollto(href='#servicos') Serviços
+        li
+        a.nav-link.scrollto(href='#contact') Contato
+        li
+        a.getstarted.scrollto(href='/login') Agendamento
+    i.bi.bi-list.mobile-nav-toggle

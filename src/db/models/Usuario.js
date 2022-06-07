@@ -1,6 +1,8 @@
+import bcrypt from 'bcrypt';
+
 export default (sequelize, Sequelize) => {
 
-    return sequelize.define('Usuario', {
+    const Usuario = sequelize.define('Usuario', {
         id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
@@ -18,9 +20,15 @@ export default (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
         },
-        tipo: {
-            type: Sequelize.STRING(10),
+        nome: {
+            type: Sequelize.STRING,
             allowNull: false,
+        },
+        tipo: {
+            type: Sequelize.ENUM,
+            allowNull: false,
+            values: ['admin', 'cliente', 'funcionario'],
+            defaultValue: 'cliente'
         },
         ativo: {
             type: Sequelize.BOOLEAN,
@@ -44,6 +52,36 @@ export default (sequelize, Sequelize) => {
             allowNull: true,
         },
     }, {
-        tableName: 'Usuario'
+        sequelize,
+        modalName: 'Usuario',
+        tableName: 'Usuario',
+        instanceMethods: {
+            generateHash(senha) {
+                return bcrypt.hash(senha, bcrypt.genSaltSync(8));
+            },
+            validarSenha: function (senha) { 
+                return bcrypt.compareSync(senha, this.senha);
+            }
+        },
+        classMethods: {
+            isSenha: (encodedPassword, password) => bcrypt.compareSync(password, encodedPassword),
+        }
     });
+
+    //Usuario.addHook('beforeSave', (usuario) => {
+    //    if (usuario.senha) {
+    //        usuario.senha = usuario.generatePasswordHash(usuario.senha); 
+    //    }
+    //});
+
+    Usuario.prototype.generatePasswordHash = (senha) => {
+        const salt = bcrypt.genSaltSync(10, 'a');
+        return bcrypt.hashSync(String(senha), salt);    
+    };
+
+    Usuario.prototype.validatePassword = (senha) => {
+        return bcrypt.compareSync(senha, this.senha);
+    };
+
+    return Usuario;
 }
