@@ -1,8 +1,11 @@
 var callAxios = axios.create();
 
 $(document).ready(function () {
-    $("#landingPage").modal('show');
+    $("#landingPage")?.modal('show');
+
+    $("#btnFecharLanding")?.on('click', () => { $("#landingPage")?.modal('hide'); })
 });
+
 
 
 
